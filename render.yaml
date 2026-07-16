@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: Recipe-Hub
+    env: python
+    region: virginia
+    branch: main
+    plan: free
+    buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput
+    startCommand: gunicorn recipehub.wsgi:application --bind 0.0.0.0:$PORT
+    envVars:
+      - key: DEBUG
+        value: "False"
+      - key: ALLOWED_HOSTS
+        value: "recipe-hub-mpkr.onrender.com"
+      - key: CSRF_TRUSTED_ORIGINS
+        value: "https://recipe-hub-mpkr.onrender.com"
+      - key: SECRET_KEY
+        value: "replace-with-a-strong-secret-key"
+
+databases:
+  - name: recipehub-db
+    region: virginia
+    databaseName: recipehub
+    plan: free
