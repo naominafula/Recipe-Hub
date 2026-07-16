@@ -2,6 +2,7 @@ services:
   - type: web
     name: Recipe-Hub
     env: python
+    rootDirectory: .
     region: virginia
     branch: main
     plan: free
