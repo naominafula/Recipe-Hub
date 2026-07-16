@@ -15,8 +15,16 @@ import os
 
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-dev-key')
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '127.0.0.1 localhost').split()
-CSRF_TRUSTED_ORIGINS = os.environ.get('CSRF_TRUSTED_ORIGINS', '').split()
+
+# Allow Render domains and local development hosts by default.
+# `ALLOWED_HOSTS` can still be overridden in the environment.
+def get_env_list(name, default=''):
+    value = os.environ.get(name, default)
+    return [item.strip() for item in value.replace(',', ' ').split() if item.strip()]
+
+ALLOWED_HOSTS = get_env_list('ALLOWED_HOSTS', '.onrender.com 127.0.0.1 localhost')
+CSRF_TRUSTED_ORIGINS = get_env_list('CSRF_TRUSTED_ORIGINS')
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
