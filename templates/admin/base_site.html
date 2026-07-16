@@ -1,0 +1,33 @@
+{% extends "admin/base.html" %}
+
+{% block extrastyle %}
+{{ block.super }}
+<style>
+    :root {
+        --primary: #8fb9a8;
+        --primary-fg: #fff;
+        --header-color: #ffffff;
+        --header-branding-color: #ffffff;
+        --header-bg: #8fb9a8;
+        --header-link-color: #ffffff;
+
+        --breadcrumbs-fg: #3d3d3d;
+        --breadcrumbs-link-fg: #6f9c8a;
+        --breadcrumbs-bg: #f0c3d3;
+
+        --link-fg: #6f9c8a;
+        --link-hover-color: #4d7d6a;
+        --link-selected-fg: #4d7d6a;
+
+        --button-bg: #8fb9a8;
+        --button-fg: #fff;
+        --button-hover-bg: #6f9c8a;
+        --default-button-bg: #8fb9a8;
+        --default-button-hover-bg: #6f9c8a;
+
+        --object-tools-bg: #f0c3d3;
+        --object-tools-fg: #3d3d3d;
+        --object-tools-hover-bg: #e0a3ba;
+    }
+</style>
+{% endblock %}
